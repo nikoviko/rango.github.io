@@ -75,6 +75,23 @@ h2 {
     font-style: italic;
     font-size: 0.95rem;
 }
+.select-marmita {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-size: 1rem;
+    color: #333;
+    cursor: pointer;
+}
+
+.select-marmita:focus {
+    outline: none;
+    border-color: #ed6200;
+    background-color: #fff;
+}
 
 .marmita {
     background: white;

@@ -119,6 +119,22 @@ function atualizarCarrinho() {
         contadorEl.textContent = carrinho.length;
     }
 }
+function adicionarBebida() {
+    const select = document.getElementById("sabor-refri");
+    const sabor = select.value;
+
+    if (sabor === "") {
+        alert("Por favor, escolha o sabor do refrigerante antes de adicionar!");
+        select.focus(); 
+        return;
+    }
+
+    
+    adicionarItem(`Refrigerante (${sabor})`, 5.50);
+
+    
+    select.value = ""; 
+}
 
 function finalizarPedido() {
     if (carrinho.length === 0) {

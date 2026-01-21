@@ -43,10 +43,9 @@
     </aside>
 
     <header>
-        <h1>RANGÔ</h1>
-        <p>Marmitas caseiras com sabor de verdade</p>
-        <p style="font-size: 0.9rem; margin-top: 5px;">📍 Quixadá - CE</p>
-        <a class="btn" href="#cardapio">Ver cardápio</a>
+        <h1><img src="logo.svg" width="600" height="250"></h1>
+        
+        <p style="font-size: 1.2rem; margin-top: 1px;">📍 Quixadá - CE</p>
     </header>
 
     <section id="cardapio">
@@ -87,13 +86,23 @@
         </div>
     </section>
 
-    <section id="bebidas">
+   <section id="bebidas">
         <h2>Bebidas</h2>
         <div class="marmita">
             <h3>Refrigerante Lata (350ml)</h3>
-            <p>Coca-Cola, Sprite, Guaraná ou São Geraldo.</p>
+            <p>Geladinho para acompanhar.</p>
+            
+            <select id="sabor-refri" class="select-marmita">
+                <option value="" disabled selected>Escolha o sabor...</option>
+                <option value="Coca-Cola">Coca-Cola</option>
+                <option value="Coca-Cola Zero">Coca-Cola Zero</option>
+                <option value="Sprite">Sprite</option>
+                <option value="Guaraná">Guaraná</option>
+                <option value="São Geraldo">São Geraldo</option>
+            </select>
+
             <span>R$ 5,50</span>
-            <button onclick="adicionarItem('Refrigerante Lata', 5.50)">Adicionar</button>
+            <button onclick="adicionarBebida()">Adicionar</button>
         </div>
     </section>
 
