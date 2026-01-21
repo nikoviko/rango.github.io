@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>RANGÔ - Marmitas Caseiras</title>
+    <title>RANGÔ - Delivery</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -16,56 +16,94 @@
             <button onclick="fecharCarrinho()">x</button>
         </header>
         
-        <ul id="lista-carrinho">
-            </ul>
+        <ul id="lista-carrinho"></ul>
         
         <div class="carrinho-footer">
-            <strong id="total">Total: R$ 0,00</strong>
-            <button class="btn" onclick="finalizarPedido()">Finalizar pedido</button>
+            
+            <div class="input-grupo">
+                <label for="bairro-select">Bairro (Taxa de Entrega):</label>
+                <select id="bairro-select" onchange="atualizarCarrinho()">
+                    <option value="" disabled selected>Selecione o bairro...</option>
+                    </select>
+            </div>
+
+            <div class="input-grupo">
+                <label for="rua-input">Rua e Número:</label>
+                <input type="text" id="rua-input" placeholder="Ex: Rua Campina, 332">
+            </div>
+
+            <div class="resumo-valores">
+                <p>Subtotal: <span id="subtotal">R$ 0,00</span></p>
+                <p>Taxa de entrega: <span id="taxa-entrega">R$ 0,00</span></p>
+                <strong id="total">Total: R$ 0,00</strong>
+            </div>
+
+            <button class="btn" onclick="finalizarPedido()">Finalizar pedido no WhatsApp</button>
         </div>
     </aside>
 
     <header>
         <h1>RANGÔ</h1>
         <p>Marmitas caseiras com sabor de verdade</p>
+        <p style="font-size: 0.9rem; margin-top: 5px;">📍 Quixadá - CE</p>
         <a class="btn" href="#cardapio">Ver cardápio</a>
     </header>
 
     <section id="cardapio">
         <h2>Cardápio</h2>
         
+        <div class="categoria-titulo">Parmegianas</div>
+        <p class="descricao-categoria">Molho de tomate caseiro, empanados na farinha panko e mussarela gratinada. Acompanha arroz e batata frita.</p>
+
         <div class="marmita">
-            <h3>Parmegiana</h3>
-            <p>Acompanha arroz, queijo selado e molho de tomate.</p>
+            <h3>Parmegiana de Frango</h3>
+            <p>Filé de frango empanado, crocante e suculento.</p>
             <span>R$ 25,00</span>
-            <button onclick="adicionarItem('Parmegiana', 25.00)">Adicionar</button>
+            <button onclick="adicionarItem('Parmegiana de Frango', 25.00)">Adicionar</button>
         </div>
 
         <div class="marmita">
-            <h3>Estrogonofe</h3>
-            <p>Frango ou carne, arroz e batata palha.</p>
-            <span>R$ 22,00</span>
-            <button onclick="adicionarItem('Estrogonofe', 22.00)">Adicionar</button>
+            <h3>Parmegiana de Carne</h3>
+            <p>Bife de alcatra selecionado.</p>
+            <span>R$ 27,00</span>
+            <button onclick="adicionarItem('Parmegiana de Carne', 27.00)">Adicionar</button>
+        </div>
+
+        <div class="categoria-titulo">Strogonoff</div>
+        <p class="descricao-categoria">Molho à base de creme de leite, mostarda e especiarias. Acompanha arroz e batata palha.</p>
+
+        <div class="marmita">
+            <h3>Strogonoff de Frango</h3>
+            <p>Cubos médios de frango macio.</p>
+            <span>R$ 23,00</span>
+            <button onclick="adicionarItem('Strogonoff de Frango', 23.00)">Adicionar</button>
+        </div>
+
+        <div class="marmita">
+            <h3>Strogonoff de Carne</h3>
+            <p>Cubos médios de carne selecionada.</p>
+            <span>R$ 25,00</span>
+            <button onclick="adicionarItem('Strogonoff de Carne', 25.00)">Adicionar</button>
         </div>
     </section>
 
     <section id="bebidas">
         <h2>Bebidas</h2>
         <div class="marmita">
-            <h3>Refrigerante Lata</h3>
-            <p>Coca-Cola, Sprite ou Guaraná (350ml)</p>
-            <span>R$ 6,00</span>
-            <button onclick="adicionarItem('Refrigerante Lata', 6.00)">Adicionar</button>
+            <h3>Refrigerante Lata (350ml)</h3>
+            <p>Coca-Cola, Sprite, Guaraná ou São Geraldo.</p>
+            <span>R$ 5,50</span>
+            <button onclick="adicionarItem('Refrigerante Lata', 5.50)">Adicionar</button>
         </div>
     </section>
 
     <footer>
         <p>Delivery RANGÔ &copy; 2026</p>
-        <p>Pedidos via WhatsApp</p>
+        <p>(88) 92001-9387</p>
     </footer>
 
     <a href="#" class="btn-fixo" onclick="abrirCarrinho(); return false;">Ver pedido (<span id="contador-carrinho">0</span>)</a>
 
-    <script src="script.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>

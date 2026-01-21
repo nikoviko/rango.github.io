@@ -6,225 +6,200 @@
 }
 
 body {
-    background: #f5f5f5;
+    background: #fcf6ee; 
     color: #333;
-    padding-bottom: 80px; /* Espaço para o botão flutuante não cobrir o footer */
+    padding-bottom: 80px;
 }
 
-/* === HEADER PRINCIPAL === */
 header {
     background: #f1e4d1;
     color: #ed6200;
     padding: 40px 20px;
     text-align: center;
+    border-bottom: 5px solid #ed6200;
 }
 
 header h1 {
     font-size: 3rem;
     letter-spacing: 2px;
+    font-weight: 800;
 }
 
 .btn {
     display: inline-block;
     margin-top: 20px;
     padding: 12px 24px;
-    background: white;
-    color: #ed6200;
+    background: #ed6200;
+    color: white;
     text-decoration: none;
     border-radius: 25px;
     font-weight: bold;
-    border: 2px solid transparent;
+    border: 2px solid #ed6200;
     transition: 0.3s;
     cursor: pointer;
 }
 
 .btn:hover {
-    background: #ed6200;
-    color: white;
-    border: 2px solid white;
+    background: white;
+    color: #ed6200;
 }
 
-/* === SEÇÕES === */
 section {
-    padding: 40px 20px;
-    max-width: 900px;
+    padding: 30px 20px;
+    max-width: 800px;
     margin: auto;
 }
 
 h2 {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     color: #444;
+    font-size: 2rem;
+    text-transform: uppercase;
 }
 
-/* === CARTÕES DE COMIDA (MARMITA) === */
+
+.categoria-titulo {
+    font-size: 1.5rem;
+    color: #d34800;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 5px;
+    border-left: 5px solid #ed6200;
+    padding-left: 10px;
+}
+
+.descricao-categoria {
+    color: #666;
+    margin-bottom: 20px;
+    font-style: italic;
+    font-size: 0.95rem;
+}
+
 .marmita {
     background: white;
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    border: 1px solid #eee;
 }
 
 .marmita h3 {
     margin-bottom: 5px;
-    color: #ed6200;
+    color: #333;
 }
 
 .marmita span {
     display: block;
-    margin: 15px 0;
+    margin: 10px 0;
     font-weight: bold;
     font-size: 1.2rem;
-    color: #333;
+    color: #ed6200;
 }
 
 .marmita button {
-    background: #ed6200;
+    background: #25d366; 
     color: white;
     border: none;
     padding: 10px 20px;
-    border-radius: 20px;
+    border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
-    align-self: flex-end; /* Botão alinhado à direita */
-    transition: background 0.2s;
+    align-self: flex-start;
+    transition: transform 0.1s;
 }
 
 .marmita button:hover {
-    background: #d34800;
+    transform: scale(1.05);
+    background: #20bd5a;
 }
 
 footer {
     text-align: center;
-    padding: 30px;
-    background: #222;
+    padding: 40px;
+    background: #333;
     color: white;
-    margin-top: 40px;
 }
 
-/* === BOTÃO FLUTUANTE === */
-.btn-fixo {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #ed6200;
-    color: white;
-    padding: 15px 25px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: bold;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    z-index: 1000;
-    transition: transform 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
 
-.btn-fixo:hover {
-    transform: scale(1.05);
-}
-
-/* === CARRINHO (SIDEBAR) === */
-#overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    display: none;
-    z-index: 1001; /* Z-index maior que o botão fixo */
-}
-
-#overlay.ativo {
-    display: block;
-}
-
-#carrinho {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 85%;
-    max-width: 400px;
-    height: 100%;
-    background: #f9f9f9;
-    z-index: 1002; /* Z-index maior que o overlay */
-    transition: right 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.2);
-}
-
-#carrinho.aberto {
-    right: 0;
-}
-
-#carrinho header {
-    padding: 20px;
-    background: #ed6200;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#carrinho header button {
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-#carrinho ul {
-    flex: 1;
-    list-style: none;
-    padding: 20px;
-    overflow-y: auto; /* Permite rolar se tiver muitos itens */
-}
-
-#carrinho li {
-    background: #fff;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-
-#carrinho li button {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 1.2rem;
-}
-
-.carrinho-footer {
-    padding: 20px;
-    background: #fff;
-    border-top: 1px solid #ddd;
-}
-
-.carrinho-footer strong {
-    display: block;
-    font-size: 1.4rem;
+.input-grupo {
     margin-bottom: 15px;
-    color: #333;
-    text-align: center;
+}
+
+.input-grupo label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #ed6200;
+    font-size: 0.9rem;
+}
+
+.input-grupo select, .input-grupo input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #fff;
+}
+
+.resumo-valores {
+    text-align: right;
+    margin: 20px 0;
+    border-top: 1px dashed #ccc;
+    padding-top: 15px;
+}
+
+.resumo-valores strong {
+    font-size: 1.3rem;
+    color: #ed6200;
+    display: block;
+    margin-top: 10px;
 }
 
 .carrinho-footer .btn {
     width: 100%;
     text-align: center;
-    background: #25d366; /* Cor do WhatsApp */
-    color: white;
-    margin-top: 0;
+    background: #ed6200;
+}
+
+
+#overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5); display: none; z-index: 1001;
+}
+#overlay.ativo { display: block; }
+
+#carrinho {
+    position: fixed; top: 0; right: -100%; width: 90%; max-width: 400px;
+    height: 100%; background: #fff; z-index: 1002;
+    transition: right 0.3s ease; display: flex; flex-direction: column;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+}
+#carrinho.aberto { right: 0; }
+
+#carrinho header {
+    padding: 20px; background: #333; color: white; border: none;
+    display: flex; justify-content: space-between; align-items: center;
+}
+#carrinho header button {
+    background: transparent; border: none; color: white; font-size: 1.5rem; cursor: pointer;
+}
+#carrinho ul {
+    flex: 1; list-style: none; padding: 20px; overflow-y: auto;
+}
+#carrinho li {
+    background: #f9f9f9; padding: 15px; margin-bottom: 10px; border-radius: 8px;
+    display: flex; justify-content: space-between; align-items: center; border: 1px solid #eee;
+}
+.carrinho-footer {
+    padding: 20px; background: #fff; border-top: 1px solid #eee;
+}
+.btn-fixo {
+    position: fixed; bottom: 20px; right: 20px; background: #ed6200;
+    color: white; padding: 15px 25px; border-radius: 50px; text-decoration: none;
+    font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 1000;
 }
