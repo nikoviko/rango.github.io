@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>RANGÔ - Marmitas Caseiras</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="overlay" onclick="fecharCarrinho()"></div>
+    
+    <aside id="carrinho">
+        <header>
+            <h2>Seu pedido</h2>
+            <button onclick="fecharCarrinho()">x</button>
+        </header>
+        
+        <ul id="lista-carrinho">
+            </ul>
+        
+        <div class="carrinho-footer">
+            <strong id="total">Total: R$ 0,00</strong>
+            <button class="btn" onclick="finalizarPedido()">Finalizar pedido</button>
+        </div>
+    </aside>
+
+    <header>
+        <h1>RANGÔ</h1>
+        <p>Marmitas caseiras com sabor de verdade</p>
+        <a class="btn" href="#cardapio">Ver cardápio</a>
+    </header>
+
+    <section id="cardapio">
+        <h2>Cardápio</h2>
+        
+        <div class="marmita">
+            <h3>Parmegiana</h3>
+            <p>Acompanha arroz, queijo selado e molho de tomate.</p>
+            <span>R$ 25,00</span>
+            <button onclick="adicionarItem('Parmegiana', 25.00)">Adicionar</button>
+        </div>
+
+        <div class="marmita">
+            <h3>Estrogonofe</h3>
+            <p>Frango ou carne, arroz e batata palha.</p>
+            <span>R$ 22,00</span>
+            <button onclick="adicionarItem('Estrogonofe', 22.00)">Adicionar</button>
+        </div>
+    </section>
+
+    <section id="bebidas">
+        <h2>Bebidas</h2>
+        <div class="marmita">
+            <h3>Refrigerante Lata</h3>
+            <p>Coca-Cola, Sprite ou Guaraná (350ml)</p>
+            <span>R$ 6,00</span>
+            <button onclick="adicionarItem('Refrigerante Lata', 6.00)">Adicionar</button>
+        </div>
+    </section>
+
+    <footer>
+        <p>Delivery RANGÔ &copy; 2026</p>
+        <p>Pedidos via WhatsApp</p>
+    </footer>
+
+    <a href="#" class="btn-fixo" onclick="abrirCarrinho(); return false;">Ver pedido (<span id="contador-carrinho">0</span>)</a>
+
+    <script src="script.js"></script>
+</body>
+</html>
