@@ -9,23 +9,30 @@ body {
     background: #fcf6ee; 
     color: #333;
     padding-bottom: 80px;
+    width: 100%;           
+    overflow-x: hidden;    
 }
-
 header {
     background: #f1e4d1;
     color: #ed6200;
     padding: 40px 20px;
-    text-align: center;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+    justify-content: center; 
+    
     border-bottom: 5px solid #ed6200;
+    width: 100%; 
 }
-
 header h1 {
-    align-content: center;
-    font-size: 3rem;
-    letter-spacing: 2px;
-    font-weight: 800;
+    line-height: 0; 
+    margin-bottom: 10px;
 }
-
+header img {
+    max-width: 100%;
+    height: auto;    
+    width: 250px;    
+}
 .btn {
     display: inline-block;
     margin-top: 20px;
