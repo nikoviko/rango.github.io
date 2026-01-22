@@ -1,5 +1,6 @@
 let carrinho = [];
 
+
 const taxasPorBairro = {
     "Retirada no Local": 0.00,
     "Centro": 4.00,
@@ -45,19 +46,60 @@ const taxasPorBairro = {
     "Residencial (Até as 22h)": 12.00
 };
 
-
 window.onload = function() {
+    verificarHorarioFuncionamento(); 
+
     const select = document.getElementById("bairro-select");
-    
     const nomesBairros = Object.keys(taxasPorBairro).sort();
     
+   
+    const indexRetirada = nomesBairros.indexOf("Retirada no Local");
+    if (indexRetirada > -1) {
+        nomesBairros.splice(indexRetirada, 1);
+        nomesBairros.unshift("Retirada no Local");
+    }
+
     nomesBairros.forEach(bairro => {
         const option = document.createElement("option");
         option.value = bairro;
-        option.textContent = `${bairro} - R$ ${taxasPorBairro[bairro].toFixed(2)}`;
+    
+        const textoValor = taxasPorBairro[bairro] === 0 ? "Grátis" : `R$ ${taxasPorBairro[bairro].toFixed(2)}`;
+        option.textContent = `${bairro} (${textoValor})`;
         select.appendChild(option);
     });
 };
+
+
+function verificarHorarioFuncionamento() {
+    const data = new Date();
+    const hora = data.getHours();
+   
+    const estaAberto = hora >= 11 && hora < 14;
+
+    const statusBanner = document.getElementById("status-loja");
+    const statusTexto = document.getElementById("status-texto");
+
+    if (estaAberto) {
+        statusBanner.className = "status-loja status-aberto";
+        statusTexto.innerText = "✨ Aberto agora! Faça seu pedido até as 14h.";
+        document.body.classList.remove("fechado");
+    } else {
+        statusBanner.className = "status-loja status-fechado";
+        statusTexto.innerText = "🔒 Fechado. Atendemos das 11h às 14h.";
+        document.body.classList.add("fechado");
+    }
+}
+
+function toggleEndereco() {
+    const select = document.getElementById("bairro-select");
+    const divEndereco = document.getElementById("campos-endereco");
+    
+    if (select.value === "Retirada no Local") {
+        divEndereco.style.display = "none";
+    } else {
+        divEndereco.style.display = "block";
+    }
+}
 
 function abrirCarrinho() {
     document.getElementById("carrinho").classList.add("aberto");
@@ -70,6 +112,13 @@ function fecharCarrinho() {
 }
 
 function adicionarItem(nome, preco) {
+    const data = new Date();
+    const hora = data.getHours();
+    if (hora < 11 || hora >= 14) {
+        alert("Desculpe, estamos fechados! O horário é das 11h às 14h.");
+        return;
+    }
+
     carrinho.push({ nome, preco });
     atualizarCarrinho();
     abrirCarrinho();
@@ -107,7 +156,6 @@ function atualizarCarrinho() {
     const bairroNome = selectBairro.value;
     const taxa = bairroNome ? taxasPorBairro[bairroNome] : 0.00;
     
-    
     const taxaFinal = carrinho.length > 0 ? taxa : 0;
     const total = subtotal + taxaFinal;
 
@@ -119,6 +167,7 @@ function atualizarCarrinho() {
         contadorEl.textContent = carrinho.length;
     }
 }
+
 function adicionarBebida() {
     const select = document.getElementById("sabor-refri");
     const sabor = select.value;
@@ -129,10 +178,7 @@ function adicionarBebida() {
         return;
     }
 
-    
     adicionarItem(`Refrigerante (${sabor})`, 5.50);
-
-    
     select.value = ""; 
 }
 
@@ -142,19 +188,24 @@ function finalizarPedido() {
         return;
     }
 
+
     const selectBairro = document.getElementById("bairro-select");
     const inputRua = document.getElementById("rua-input");
+    const inputComp = document.getElementById("complemento-input");
+    const inputObs = document.getElementById("observacoes");
     
     const bairro = selectBairro.value;
     const rua = inputRua.value.trim();
+    const complemento = inputComp.value.trim();
+    const observacoes = inputObs.value.trim();
 
     if (!bairro) {
-        alert("Por favor, selecione seu BAIRRO para calcular a entrega.");
+        alert("Por favor, selecione se é Entrega ou Retirada.");
         selectBairro.focus();
         return;
     }
 
-    if (!rua && bairro !== "Retirada no Local") {
+    if (bairro !== "Retirada no Local" && !rua) {
         alert("Por favor, digite o nome da RUA e o NÚMERO.");
         inputRua.focus();
         return;
@@ -162,6 +213,7 @@ function finalizarPedido() {
 
     const taxa = taxasPorBairro[bairro];
     let subtotal = 0;
+    
     
     let mensagem = "*Novo Pedido - RANGÔ*\n\n";
     mensagem += "*Itens:*\n";
@@ -173,15 +225,26 @@ function finalizarPedido() {
 
     const total = subtotal + taxa;
 
-    mensagem += `\n📍 *Entrega:* ${bairro}`;
-    if(rua) mensagem += `\n🏠 *Endereço:* ${rua}`;
+    mensagem += `\n--------------------------------\n`;
     
-    mensagem += `\n\n💰 *Subtotal:* R$ ${subtotal.toFixed(2).replace('.', ',')}`;
-    mensagem += `\n🛵 *Taxa:* R$ ${taxa.toFixed(2).replace('.', ',')}`;
-    mensagem += `\n✅ *TOTAL:* R$ ${total.toFixed(2).replace('.', ',')}`;
+    if (bairro === "Retirada no Local") {
+        mensagem += `📍 *Tipo:* RETIRADA NO LOCAL (Sem taxa)\n`;
+    } else {
+        mensagem += `🛵 *Entrega:* ${bairro}\n`;
+        mensagem += `🏠 *Endereço:* ${rua}\n`;
+        if(complemento) mensagem += `🏢 *Compl:* ${complemento}\n`;
+    }
+
+    if(observacoes) {
+        mensagem += `📝 *Obs:* ${observacoes}\n`;
+    }
+
+    mensagem += `--------------------------------\n`;
+    mensagem += `💰 *Subtotal:* R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
+    mensagem += `🛵 *Taxa:* R$ ${taxa.toFixed(2).replace('.', ',')}\n`;
+    mensagem += `✅ *TOTAL:* R$ ${total.toFixed(2).replace('.', ',')}`;
     mensagem += `\n\nAguardo confirmação!`;
 
-    
     const telefone = "5588920019387"; 
     
     window.open(

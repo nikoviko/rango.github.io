@@ -8,6 +8,10 @@
 </head>
 <body>
 
+    <div id="status-loja" class="status-loja">
+        <span id="status-texto">Verificando horário...</span>
+    </div>
+
     <div id="overlay" onclick="fecharCarrinho()"></div>
     
     <aside id="carrinho">
@@ -21,15 +25,27 @@
         <div class="carrinho-footer">
             
             <div class="input-grupo">
-                <label for="bairro-select">Bairro (Taxa de Entrega):</label>
-                <select id="bairro-select" onchange="atualizarCarrinho()">
-                    <option value="" disabled selected>Selecione o bairro...</option>
+                <label for="bairro-select">Entrega ou Retirada?</label>
+                <select id="bairro-select" onchange="atualizarCarrinho(); toggleEndereco()">
+                    <option value="" disabled selected>Selecione...</option>
                     </select>
             </div>
 
+            <div id="campos-endereco">
+                <div class="input-grupo">
+                    <label for="rua-input">Rua e Número:</label>
+                    <input type="text" id="rua-input" placeholder="Ex: Rua Campina, 332">
+                </div>
+
+                <div class="input-grupo">
+                    <label for="complemento-input">Complemento (Opcional):</label>
+                    <input type="text" id="complemento-input" placeholder="Ex: Apto 101, Bloco B">
+                </div>
+            </div>
+
             <div class="input-grupo">
-                <label for="rua-input">Rua e Número:</label>
-                <input type="text" id="rua-input" placeholder="Ex: Rua, número">
+                <label for="observacoes">Observações:</label>
+                <textarea id="observacoes" rows="3" placeholder="Ex: Sem cebola, troco para 50..."></textarea>
             </div>
 
             <div class="resumo-valores">
@@ -38,14 +54,13 @@
                 <strong id="total">Total: R$ 0,00</strong>
             </div>
 
-            <button class="btn" onclick="finalizarPedido()">Finalizar pedido no WhatsApp</button>
+            <button class="btn" onclick="finalizarPedido()">Enviar Pedido no WhatsApp</button>
         </div>
     </aside>
 
     <header>
-        <h1><img src="logo.svg"></h1>
-        
-        <p style="font-size: 1.2rem; margin-top: 1px;">📍 Quixadá - CE</p>
+        <h1><img src="logo.svg" alt="RANGÔ" style="max-height: 80px;"></h1>
+        <p style="font-size: 1.2rem; margin-top: 5px;">📍 Quixadá - CE</p>
     </header>
 
     <section id="cardapio">
@@ -86,7 +101,7 @@
         </div>
     </section>
 
-   <section id="bebidas">
+    <section id="bebidas">
         <h2>Bebidas</h2>
         <div class="marmita">
             <h3>Refrigerante Lata (350ml)</h3>
@@ -97,7 +112,9 @@
                 <option value="Coca-Cola">Coca-Cola</option>
                 <option value="Coca-Cola Zero">Coca-Cola Zero</option>
                 <option value="Sprite">Sprite</option>
+                <option value="Sprite Zero">Sprite Zero</option>
                 <option value="Guaraná">Guaraná</option>
+                <option value="Guaraná Zero">Guaraná Zero</option>
                 <option value="São Geraldo">São Geraldo</option>
             </select>
 
